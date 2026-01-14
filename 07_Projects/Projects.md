@@ -90,3 +90,17 @@ form.addEventListener('submit', (e) => {
 });
 
 ```
+
+Project 3 
+
+``` javascript
+
+let myClock = document.querySelector('#clock');
+
+setInterval(() => {
+  let date = new Date();
+  myClock.textContent = date.toLocaleTimeString();
+}, 1000);
+
+
+```
