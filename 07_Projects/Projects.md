@@ -230,3 +230,39 @@ game();
 
 
 ```
+
+Project 6
+
+``` javascript
+
+let colorChange = null;
+
+function interval(action) {
+  let generatePastelWithFont = () => {
+    const hue = Math.floor(Math.random() * 360);
+    const bgColor = `hsl(${hue}, 70%, 80%)`;
+    const fontColor = `hsl(${hue}, 40%, 25%)`;
+    return [bgColor, fontColor];
+  };
+
+  if (action === 'Start') {
+    colorChange = setInterval(() => {
+      let newColor = generatePastelWithFont();
+      document.body.style.backgroundColor = newColor[0];
+      document.body.style.color = newColor[1];
+    }, 1000);
+  } else if (action === 'Stop') {
+    clearInterval(colorChange);
+    colorChange = null;
+  }
+}
+
+document.getElementById('start').addEventListener('click', () => {
+  interval('Start');
+});
+
+document.getElementById('stop').addEventListener('click', () => {
+  interval('Stop');
+});
+
+```
