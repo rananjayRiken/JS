@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>APIs</title>
+<style>
+  #card {
+    /* Using fixed pixels for better control than % */
+    width: 250px;
+    padding: 30px;
+    margin: 50px auto; /* Centers the card on the page */
+    
+    background-color: #343b3b; /* Aqua */
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Adds depth */
+    
+    text-align: center;
+    font-family: sans-serif;
+  }
+
+  #image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Makes it a circle */
+    border: 4px solid white;
+    object-fit: cover; /* Stops the image from stretching */
+  }
+
+  #name {
+    margin-top: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #bad5e6;
+    text-transform: capitalize;
+  }
+</style>
+  </head>
+  <body>
+    <h1>Enter your git username</h1>
+    <br>
+    <form>
+    <input type="text" id="username" placeholder="regalriken" />
+    <button id="button">Search</button>
+    </form>
+    <div id="card">
+      <div id="img">
+        <img src="" alt="" id="image" />
+      </div>
+      <div id="name"></div>
+    </div>
+    css of that card by ai 🤓
+  </body>
+  <script>
+const myButton = document.getElementById("button");
+
+myButton.addEventListener("click", (e) => {
+e.preventDefault()
+    let username = document.getElementById("username").value;
+
+    if (!username) {
+        username = "regalriken";
+    }
+
+
+    const url = `https://api.github.com/users/${username}`;
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", url);
+
+
+xhr.onreadystatechange = () => {
+
+    if (xhr.readyState === 4) {
+        
+
+        if (xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
+            
+            const imageTag = document.getElementById("image");
+            if (imageTag) {
+                imageTag.src = data.avatar_url;
+            }
+
+            const nameBox = document.getElementById("name");
+            if (nameBox) {
+                nameBox.textContent = data.name;
+            }
+
+            console.log("User Data:", data);
+        } 
+        else if (xhr.status === 404) {
+            const nameBox = document.getElementById("name");
+            if (nameBox) {
+                nameBox.textContent = "user not found :/";
+            }
+            console.error("Error 404: User not found");
+        } 
+    }
+};
+
+xhr.send();
+});
+  </script>
+</html>
