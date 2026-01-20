@@ -1,4 +1,4 @@
-
+//  Adding a property to give true length inside a String literal
 let myName = "   Riken   "
 
 String.prototype.trueLength = function(){
