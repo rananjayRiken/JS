@@ -1,3 +1,4 @@
+// Creating a exclusive parent class property / method 
 class User {
     constructor (username){
         this.username = username
