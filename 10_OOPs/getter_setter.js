@@ -1,3 +1,4 @@
+// Sort of formating/hiding true values from printing it on screen
 class User {
   constructor(email, password) {
     this.email = email;
